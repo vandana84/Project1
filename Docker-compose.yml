@@ -1,0 +1,123 @@
+version: "3"
+
+ 
+
+services:
+
+ 
+
+  springBootApp:
+
+ 
+
+    image: vandana9/project1-image:1.0
+
+    container_name: docker-postgres-springboot-demo-app
+
+ 
+
+    environment:
+
+ 
+
+      - POSTGRES_HOST=docker-postgres-springboot-demo-db
+
+ 
+
+    ports:
+
+ 
+
+      - "8082:8087"
+
+ 
+
+    networks:
+
+ 
+
+      - network
+
+ 
+
+    depends_on:
+
+ 
+
+      - postgresDb
+
+ 
+
+    restart: on-failure
+
+ 
+
+ 
+
+ 
+
+  postgresDb:
+
+ 
+
+    image: postgres:15.0
+
+ 
+
+    container_name: docker-postgres-springboot-demo-db
+
+ 
+
+    ports:
+
+ 
+
+      - "5434:5432"
+
+ 
+
+    networks:
+
+ 
+
+      - network
+
+ 
+
+    volumes:
+
+ 
+
+      - volume:/var/lib/postgresql/data
+
+ 
+
+    environment:
+
+ 
+
+      - POSTGRES_USER=postgres
+
+ 
+
+      - POSTGRES_PASSWORD=Vandana@2001
+
+   
+
+      - POSTGRES_DB=postgres
+
+ 
+
+networks:
+
+ 
+
+ network:
+
+ 
+
+volumes:
+
+ 
+
+ volume:
